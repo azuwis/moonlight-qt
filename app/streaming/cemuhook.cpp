@@ -171,7 +171,7 @@ void Server::handleReceive() {
                     }
 
                     if (const char* serial = SDL_JoystickGetSerial(joystick)) {
-                        sscanf_s(serial, "%hhx-%hhx-%hhx-%hhx-%hhx-%hhx",
+                        sscanf(serial, "%2hhx-%2hhx-%2hhx-%2hhx-%2hhx-%2hhx",
                                  &response.shared.mac[0], &response.shared.mac[1], &response.shared.mac[2],
                                  &response.shared.mac[3], &response.shared.mac[4], &response.shared.mac[5]);
                     } else {
@@ -244,7 +244,7 @@ void Server::handleSend(const GamepadState& state) {
 
     SDL_Joystick* joystick = SDL_JoystickFromInstanceID(state.jsId);
     if (const char* serial = SDL_JoystickGetSerial(joystick)) {
-        sscanf_s(serial, "%hhx-%hhx-%hhx-%hhx-%hhx-%hhx",
+        sscanf(serial, "%2hhx-%2hhx-%2hhx-%2hhx-%2hhx-%2hhx",
                  &response.shared.mac[0], &response.shared.mac[1], &response.shared.mac[2],
                  &response.shared.mac[3], &response.shared.mac[4], &response.shared.mac[5]);
     } else {
